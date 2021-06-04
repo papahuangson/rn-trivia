@@ -71,7 +71,7 @@ function TabTwoNavigator() {
       <TabTwoStack.Screen
         name="TabTwoScreen"
         component={TabTwoScreen}
-        options={{ headerTitle: 'Results', headerStyle: {alignItems: 'center'} }}
+        options={{ headerTitle: 'Results' }}
       />
     </TabTwoStack.Navigator>
   );

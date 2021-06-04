@@ -7,7 +7,7 @@ import { Text, View } from '../components/Themed';
 export default function TabTwoScreen() {
   const [numberOfGames, setNumberOfGames] = useState(0);
   const [correctAnswers, setCorrectAnswers] = useState(0);
-  
+
   useEffect(() => {
     updateLocalStats();
   });
@@ -41,6 +41,6 @@ const styles = StyleSheet.create({
   value: {
     fontSize: 24,
     color: 'red',
-    marginRight: 20,
+    paddingRight: 20,
   },
 });

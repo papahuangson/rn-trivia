@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Platform } from 'react-native';
 import {decode} from 'html-entities';
 
@@ -9,26 +9,28 @@ export function QuestionItem(props: {question: any, onAnswer: any}) {
     <View style={[styles.questionContainer, Platform.OS === 'android' ? {elevation: 8} : styles.iosShadow]} key={props.question}>
         {!isCorrect && !isIncorrect ? (
           <>
-            <Text style={styles.categoryText}>{props.question.category}</Text>
-              <Text style={styles.questionText}>{decode(props.question.question)}</Text>
-              <View style={styles.answerContainer}>
-                {props.question.answers.map((choice: any) => (
-                  <TouchableOpacity
-                    key={choice}
-                    style={styles.answerButton}
-                    onPress={() => {
-                      choice === props.question.correct_answer ? setIsCorrect(true) : setIsIncorrect(true);
-                      props.onAnswer(choice === props.question.correct_answer);
-                    }}>
-                    <Text>{decode(choice)}</Text>
-                  </TouchableOpacity>
-                ))}
-              </View>
+            <View style={styles.categoryContainer}>
+              <Text style={styles.categoryText}>{props.question.category}</Text>
+            </View>
+            <Text style={styles.questionText}>{decode(props.question.question)}</Text>
+            <View style={styles.answerContainer}>
+              {props.question.answers.map((choice: any) => (
+                <TouchableOpacity
+                  key={choice}
+                  style={styles.answerButton}
+                  onPress={() => {
+                    choice === props.question.correct_answer ? setIsCorrect(true) : setIsIncorrect(true);
+                    props.onAnswer(choice === props.question.correct_answer);
+                  }}>
+                  <Text style={styles.answerText}>{decode(choice)}</Text>
+                </TouchableOpacity>
+              ))}
+            </View>
           </>
         ) : (
           <>
             <View style={styles.correctContainer}>
-              <Text>{isCorrect ? 'Yep!\n' : 'Nope!\n'}The correct answer is {decode(props.question.correct_answer)}</Text>
+              <Text style={styles.correctText}>{isCorrect ? 'Yep!' : 'Nope!'}{'\n\n'}The correct answer is {decode(props.question.correct_answer)}</Text>
             </View>
           </>
         )}
@@ -50,37 +52,46 @@ const styles = StyleSheet.create({
     padding: 20,
     marginBottom: 20,
   },
-  categoryText: {
-    alignSelf: 'center',
-    fontSize: 24,
+  categoryContainer: {
     padding: 10,
     marginBottom: 10,
     borderRadius: 15,
-    backgroundColor: 'red',
+    backgroundColor: Platform.OS === 'android' ? '#3185FC' : '#111D4A',
+  },
+  categoryText: {
+    fontSize: 24,
     color: 'white',
+    textAlign: 'center',
   },
   questionText: {
     paddingVertical: 20,
-    alignSelf: 'center',
+    textAlign: 'center',
   },
   answerContainer: {
     alignItems: 'center',
   },
   answerButton: {
-    padding: 20,
-    backgroundColor: 'white',
-    borderColor: 'blue',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    backgroundColor: Platform.OS === 'android' ? '#F9DC5C' : '#FFCF99',
+    borderColor: 'black',
     borderWidth: 3,
     borderRadius: 15,
     margin: 5,
+  },
+  answerText: {
+    fontSize: 18,
   },
   title: {
     fontSize: 20,
     fontWeight: 'bold',
   },
   correctContainer: {
-    textAlign: 'center',
     padding: 20,
+  },
+  correctText: {
+    textAlign: 'center',
+    color: 'black',
   },
   iosShadow: {
     shadowColor: "#000",
