@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<RCTScrollView
+  contentContainerStyle={
+    Object {
+      "alignItems": "center",
+      "justifyContent": "center",
+    }
+  }
+  style={
+    Object {
+      "flex": 1,
+      "paddingVertical": 20,
+    }
+  }
+>
+  <View>
+    <View
+      accessible={true}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "opacity": 1,
+        }
+      }
+      testID="startGameButton"
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#000",
+            },
+            Object {
+              "backgroundColor": "red",
+              "color": "white",
+              "fontSize": 20,
+              "padding": 20,
+            },
+          ]
+        }
+      >
+        Start a new round
+      </Text>
+    </View>
+  </View>
+</RCTScrollView>
+`;
